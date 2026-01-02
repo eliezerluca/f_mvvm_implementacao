@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_implementacao/data/dtos/login_request_dto.dart';
+import 'package:mvvm_implementacao/data/models/user_model.dart';
+import 'package:mvvm_implementacao/domain/entities/user.dart';
 
 void main() {
-  LoginRequestDto validDTO = LoginRequestDto(
-    email: 'teste.teste.com',
-    password: '123456',
-  );
+  // simulando um json da api
+  Map<String, dynamic> json = {
+    'id': '123',
+    'email': 'joao@teste.com',
+    'user_metadata': {'name': 'joao silva'},
+  };
 
-  final validation = validDTO.validate();
-  if (validation == null) {
-    debugPrint('DTO válido');
-  } else {
-    debugPrint('DTO inválido: $validation');
-  }
+  // json -> model
+  UserModel model = UserModel.fromJson(json);
+  debugPrint('Model: $model');
+
+  // model -> entity
+  User entity = model.toEntity();
+  debugPrint('Entity: $entity');
+
+  // entity -> model
+  UserModel modelFromEntity = UserModel.fromEntity(entity);
+  print('Model from Entity: $modelFromEntity');
+
+  // model -> json
+  print('JSON: ${modelFromEntity.toJson()}');
 }
