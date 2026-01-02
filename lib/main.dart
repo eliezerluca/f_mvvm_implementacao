@@ -20,8 +20,8 @@ void main() {
 
   // entity -> model
   UserModel modelFromEntity = UserModel.fromEntity(entity);
-  print('Model from Entity: $modelFromEntity');
+  debugPrint('Model from Entity: $modelFromEntity');
 
   // model -> json
-  print('JSON: ${modelFromEntity.toJson()}');
+  debugPrint('JSON: ${modelFromEntity.toJson()}');
 }
