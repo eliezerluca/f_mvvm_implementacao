@@ -1,16 +1,16 @@
-import 'package:mvvm_implementacao/domain/entities/user.dart';
+import 'package:flutter/material.dart';
+import 'package:mvvm_implementacao/data/dtos/login_request_dto.dart';
 
 void main() {
-  User user = User(
-    id: '1',
-    email: 'teste@teste.com',
-    name: 'Teste',
+  LoginRequestDto validDTO = LoginRequestDto(
+    email: 'teste.teste.com',
+    password: '123456',
   );
 
-  print(user);
-
-  User updatedUser = user.copyWith(name: 'Novo Nome', id: '2');
-  print('updated user: ${updatedUser}.');
-
-  print('user == updatedUser ? ${user == updatedUser}'); // false, different ids
+  final validation = validDTO.validate();
+  if (validation == null) {
+    debugPrint('DTO válido');
+  } else {
+    debugPrint('DTO inválido: $validation');
+  }
 }
