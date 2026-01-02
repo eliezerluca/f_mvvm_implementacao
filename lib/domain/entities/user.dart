@@ -3,6 +3,7 @@ class User {
   final String email;
   final String? name;
 
+  // metodos de negocios
   String get displayName => name ?? email;
   bool get isAnonymous => email.isEmpty;
   bool get isRegistered => !isAnonymous;
