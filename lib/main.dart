@@ -1,10 +1,16 @@
-import 'package:mvvm_implementacao/core/result/app_result.dart';
+import 'package:mvvm_implementacao/domain/entities/user.dart';
 
 void main() {
-  AppResult<String> success = AppResult.success('Funcionou!');
+  User user = User(
+    id: '1',
+    email: 'teste@teste.com',
+    name: 'Teste',
+  );
 
-  print('Sucesso? ${success.isSuccess},\n Dados: ${success.data}');
+  print(user);
 
-  AppResult<String> failure = AppResult.failure('Deu erro!');
-  print('Falha? ${failure.isFailure},\n Erro: ${failure.error}');
+  User updatedUser = user.copyWith(name: 'Novo Nome', id: '2');
+  print('updated user: ${updatedUser}.');
+
+  print('user == updatedUser ? ${user == updatedUser}'); // false, different ids
 }
