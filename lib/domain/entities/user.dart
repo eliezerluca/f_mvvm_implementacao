@@ -3,6 +3,11 @@ class User {
   final String email;
   final String? name;
 
+  String get displayName => name ?? email;
+  bool get isAnonymous => email.isEmpty;
+  bool get isRegistered => !isAnonymous;
+  bool get hasName => name != null && name!.isNotEmpty;
+
   User({
     required this.id,
     required this.email,
