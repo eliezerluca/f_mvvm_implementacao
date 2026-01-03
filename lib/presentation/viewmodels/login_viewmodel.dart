@@ -19,7 +19,7 @@ class LoginViewmodel extends ChangeNotifier {
   bool _isSuccess = false;
   bool get isSuccess => _isSuccess;
 
-  Future<void> login(String email, String password) async {
+  Future<void> login({required String email, required String password}) async {
     if (email.isEmpty || password.isEmpty) {
       _errorMessage = 'Preencha todos os campos.';
       notifyListeners();
