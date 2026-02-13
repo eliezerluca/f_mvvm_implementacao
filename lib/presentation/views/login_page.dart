@@ -262,7 +262,19 @@ class _SuccessPage extends StatelessWidget {
               style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
             const SizedBox(height: 24),
-            ElevatedButton(onPressed: () {}, child: const Text('Fazer Logout')),
+            ElevatedButton(
+              onPressed: () async {
+                final viewModel = Provider.of<LoginViewmodel>(
+                  context,
+                  listen: false,
+                );
+                await viewModel.logout();
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (_) => const LoginPage()),
+                );
+              },
+              child: const Text('Fazer Logout'),
+            ),
           ],
         ),
       ),
