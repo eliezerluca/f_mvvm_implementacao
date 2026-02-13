@@ -1,6 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:mvvm_implementacao/domain/entities/user.dart';
 import 'package:mvvm_implementacao/presentation/viewmodels/login_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -226,13 +225,12 @@ void _showInstructionsDialog(BuildContext context) {
 }
 
 class _SuccessPage extends StatelessWidget {
-  final dynamic user;
+  final User user;
 
   const _SuccessPage({required this.user});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login realizado'),
@@ -243,24 +241,27 @@ class _SuccessPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.check_circle_outline),
-            const SizedBox(
-              height: 24,
+            const Icon(
+              Icons.check_circle_outline,
+              size: 80,
+              color: Colors.green,
             ),
+            const SizedBox(height: 24),
             const Text(
               'Login realizado com sucesso',
-              style: const TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18),
             ),
-            const SizedBox(
-              height: 24,
-            ),
+            const SizedBox(height: 24),
             Text(
-              'Usuário: ${user['name']}',
+              'Usuário: ${user.displayName}',
               style: const TextStyle(fontSize: 18),
             ),
-            const SizedBox(
-              height: 24,
+            const SizedBox(height: 8),
+            Text(
+              'Email: ${user.email}',
+              style: const TextStyle(fontSize: 14, color: Colors.grey),
             ),
+            const SizedBox(height: 24),
             ElevatedButton(onPressed: () {}, child: const Text('Fazer Logout')),
           ],
         ),
